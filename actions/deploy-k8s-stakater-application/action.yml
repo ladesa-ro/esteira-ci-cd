@@ -13,7 +13,7 @@ inputs:
     required: true
   helm-release-name:
     description: "helm application namespace"
-    default: "ladesa-ro-sso"
+    required: true
 
 runs:
   using: composite
