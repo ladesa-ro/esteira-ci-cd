@@ -7,6 +7,11 @@ inputs:
     required: false
     default: "false"
 
+  push-image:
+    description: "Enable built image push into the registry"
+    required: false
+    default: "true"
+
   push-image-registry-url:
     description: "Registry URL"
     required: false
