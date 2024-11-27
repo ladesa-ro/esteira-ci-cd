@@ -14,6 +14,10 @@ inputs:
   helm-release-name:
     description: "helm application namespace"
     required: true
+  helm-release-extra-options:
+    description: "helm release extra options"
+    required: false
+    default: "--values=./.devops/values.common.yml"
 
 runs:
   using: composite
@@ -25,6 +29,7 @@ runs:
         K8S_DEPLOYMENT: ${{ inputs.deployment }}
         HELM_RELEASE_NAME: ${{ inputs.helm-release-name }}
         HELM_RELEASE_VALUES: ${{ inputs.helm-values }}
+        HELM_RELEASE_EXTRA_OPTIONS: ${{ inputs.helm-release-extra-options }}
       run: |
 
         GENERIC_CHART_REPO=stakater
@@ -38,7 +43,7 @@ runs:
 
         echo "${HELM_RELEASE_VALUES}" | helm upgrade -i ${HELM_RELEASE_NAME} ${GENERIC_CHART_NAME} \
           --namespace=${K8S_NAMESPACE} \
-          --values=./.devops/values.common.yml \
+          ${HELM_RELEASE_EXTRA_OPTIONS} \
           -f - \
         ;
 
