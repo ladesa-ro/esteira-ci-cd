@@ -31,7 +31,8 @@ runs:
         HELM_RELEASE_VALUES: ${{ inputs.helm-values }}
         HELM_RELEASE_EXTRA_OPTIONS: ${{ inputs.helm-release-extra-options }}
       run: |
-
+        set -xe;
+        
         GENERIC_CHART_REPO=stakater
         GENERIC_CHART_REPO_SOURCE=https://stakater.github.io/stakater-charts
         GENERIC_CHART_NAME=stakater/application
