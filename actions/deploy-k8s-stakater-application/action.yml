@@ -37,7 +37,7 @@ runs:
         GENERIC_CHART_REPO_SOURCE=https://stakater.github.io/stakater-charts
         GENERIC_CHART_NAME=stakater/application
 
-        if [[ "$(helm search repo \"${GENERIC_CHART_NAME}\" 2>/dev/null)" == 'No results found' ]] then
+        if [[ "$(helm search repo ${GENERIC_CHART_NAME} 2>/dev/null)" == 'No results found' ]] then
           helm repo add ${GENERIC_CHART_REPO} ${GENERIC_CHART_REPO_SOURCE}
           helm repo update
         fi
