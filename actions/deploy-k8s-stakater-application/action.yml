@@ -33,8 +33,6 @@ runs:
       run: |
         set -xe;
 
-        helm env;
-        
         GENERIC_CHART_REPO=stakater
         GENERIC_CHART_REPO_SOURCE=https://stakater.github.io/stakater-charts
         GENERIC_CHART_NAME=stakater/application
