@@ -27,3 +27,7 @@ jobs:
 
       - shell: bash
         run: echo $IMAGE_NAME | base64
+
+      - name: ${{ env.IMAGE_NAME }} teste
+        shell: bash
+        run: echo ${{ env.IMAGE_NAME }} | base64
