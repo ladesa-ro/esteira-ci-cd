@@ -11,6 +11,10 @@ inputs:
     description: "Build target layer"
     required: true
 
+  load-image:
+    description: "Load image"
+    required: false
+
   push-image:
     description: "Enable built image push into the registry"
     required: false
@@ -40,5 +44,6 @@ runs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
         target: ${{ inputs.build-target-tag }}
+        load: ${{ inputs.load-image == 'true' }}
         # platforms: linux/amd64
         # outputs: type=cacheonly
