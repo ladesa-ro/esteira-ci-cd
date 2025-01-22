@@ -3,7 +3,8 @@ name: teste
 on:
   workflow_dispatch:
   push:
-    - main
+    branches:
+      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
