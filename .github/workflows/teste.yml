@@ -18,6 +18,7 @@ jobs:
 
       - uses: Infisical/secrets-action@v1.0.7
         with:
+          domain: https://infisical.ladesa.com.br
           client-id: ${{ secrets.MACHINE_IDENTITY_CLIENT_ID }} # Update this to your own Github references
           client-secret: ${{ secrets.MACHINE_IDENTITY_CLIENT_SECRET }} # Update this to your own Github references
           env-slug: "dev"
