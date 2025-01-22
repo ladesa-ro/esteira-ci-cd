@@ -1,0 +1,27 @@
+name: teste
+
+on:
+  workflow_dispatch:
+  push:
+    - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  teste:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: Infisical/secrets-action@v1.0.7
+        with:
+          client-id: ${{ secrets.MACHINE_IDENTITY_CLIENT_ID }} # Update this to your own Github references
+          client-secret: ${{ secrets.MACHINE_IDENTITY_CLIENT_SECRET }} # Update this to your own Github references
+          env-slug: "dev"
+          secret-path: "/ci-cd/ladesa-github-actions/cluster-deployment"
+          project-slug: "api-asq-e"
+
+      - shell: bash
+        run: echo $IMAGE_NAME | base64
