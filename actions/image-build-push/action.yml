@@ -2,6 +2,21 @@ name: "Continuous Deployment – Build and Push"
 description: "Builds the container image and pushes into the registry"
 
 inputs:
+  no-cache:
+    description: "disables cache"
+    required: false
+    default: "true"
+  
+  cache-from:
+    description: "cache-from"
+    required: false
+    default: "true"
+
+  cache-to:
+    description: "cache-to"
+    required: false
+    default: "true"
+
   build-image:
     description: "Should build the container image"
     required: false
@@ -41,8 +56,9 @@ runs:
       with:
         push: ${{ inputs.push-image == 'true' }}
         tags: ${{ inputs.push-image-registry-url }}/${{ inputs.image-name }}:${{ inputs.image-tag }}
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+        cache-from: ${{ inputs.cache-from }}
+        cache-to: ${{ inputs.cache-to }}
+        no-cache: ${{ inputs.no-cache == 'true' }}
         target: ${{ inputs.build-target-tag }}
         load: ${{ inputs.load-image == 'true' }}
         # platforms: linux/amd64
