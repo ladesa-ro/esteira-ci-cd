@@ -5,7 +5,7 @@ inputs:
   no-cache:
     description: "disables cache"
     required: false
-    default: "true"
+    default: "false"
   
   # cache-from:
   #   description: "cache-from"
