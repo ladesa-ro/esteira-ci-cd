@@ -33,16 +33,10 @@ runs:
       run: |
         set -xe;
 
-        GENERIC_CHART_REPO=stakater
-        GENERIC_CHART_REPO_SOURCE=https://stakater.github.io/stakater-charts
-        GENERIC_CHART_NAME=stakater/application
-
-        if [[ "$(helm search repo ${GENERIC_CHART_NAME} 2>/dev/null)" == 'No results found' ]] then
-          helm repo add ${GENERIC_CHART_REPO} ${GENERIC_CHART_REPO_SOURCE}
-          helm repo update
-        fi
-
-        echo "${HELM_RELEASE_VALUES}" | helm upgrade -i ${HELM_RELEASE_NAME} ${GENERIC_CHART_NAME} \
+        helm repo add --force-update stakater https://stakater.github.io/stakater-charts;
+        helm repo update;
+        
+        echo "${HELM_RELEASE_VALUES}" | helm upgrade -i ${HELM_RELEASE_NAME} stakater/application \
           --namespace=${K8S_NAMESPACE} \
           ${HELM_RELEASE_EXTRA_OPTIONS} \
           -f - \
